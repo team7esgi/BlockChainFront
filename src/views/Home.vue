@@ -93,14 +93,14 @@
         <v-layout row ma-5 justify-center> 
             <v-flex xs12 sm5 md5 lg2 mx-2 v-for="house in filteredHouses" :key="house.id">
                 <v-card elevation="5" outlined pa-5 text-wrap>
-                    <v-img height="300" src="@/assets/house.jpg"></v-img>
-                    <v-card-title>
+                    <v-img height="200" src="@/assets/house.jpg"></v-img>
+                    <v-card-title text-truncate>
                         {{house.title}}
                     </v-card-title>
                     <v-card-text >
                         {{house.nbRoom}} Room • {{house.surface}}m² • {{house.address.city}}
                     </v-card-text>
-                    <v-card-subtitle>
+                    <v-card-subtitle text-truncate>
                         {{house.about}}
                     </v-card-subtitle>
                     <v-card-actions>
@@ -187,7 +187,7 @@ export default {
                 },
             ],
             searchLabel: '',
-            houseCategory : ['house', 'villa', 'appartement'],
+            houseCategory : ['house', 'villa/loft', 'appartement'],
             houseCategorySelect: [],
             nbBedRoomItems : ['0','1','2','3','4','5+'],
             nbBedRoomSelect: [],
@@ -240,10 +240,6 @@ export default {
             return this.houseCategorySelect.some(category => category===house.category)
         },
         houseSurfaceFilter(house){
-            console.log(house.surface)
-            console.log("min "+this.range[0])
-            console.log("max "+this.range[1])
-            console.log(house.surface>=this.range[0] && house.surface<=this.range[1])
             return (house.surface>=this.range[0] && house.surface<=this.range[1])
         }
     },

@@ -9,10 +9,7 @@
                 <v-icon right>mdi-storefront</v-icon>    
             </v-btn>
             
-            <v-btn outlined class="mr-10">
-                <span>Sell a house</span>
-                <v-icon right>mdi-cart-arrow-up</v-icon>    
-            </v-btn>
+            <HouseFormPopUp/>
 
             <v-btn outlined class="mr-10" router :to="{path: '/myhouses'}">
                 <span>My houses</span>
@@ -28,7 +25,12 @@
 </template>
 
 <script>
+import HouseFormPopUp from './HouseFormPopUp'
+
 export default {
+    components: {
+        HouseFormPopUp
+    },
     data() {
         return{
         }

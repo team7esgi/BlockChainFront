@@ -97,14 +97,17 @@ export default {
                 "nbBedRoom":2,
                 "others":[
                     {
+                        "id": 0,
                         "item": "micro-onde",
                         "description": "micro onde 200w"
                     },
                     {
+                        "id": 1,
                         "item": "Parking",
                         "description": "2 places de parking"
                     },
                     {
+                        "id": 2,
                         "item": "Climtisation",
                         "description": "Climatisation récemment ramoner par une société connu mondialement dans le quartier"
                     },
@@ -120,12 +123,6 @@ export default {
                 "price": 10,
                 "owner":"Djadji"
             }
-        }
-    },
-    props: {
-        id: {
-            type: Number,
-            required: true
         }
     }
 }

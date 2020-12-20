@@ -6,39 +6,38 @@
         scrollable
         max-width="800px"
         >
-        <template v-slot:activator="{ on, attrs }">  
-            <v-btn outlined class="mr-10" slot="activator" v-bind="attrs" v-on="on">
-                <span>Sell a house</span>
-                <v-icon right>mdi-cart-arrow-up</v-icon>    
+        <template v-slot:activator="{ on, attrs }">
+            <v-btn icon color="primary" slot="activator" v-bind="attrs" v-on="on">
+                <v-icon>mdi-home-edit-outline</v-icon>
             </v-btn>
         </template>
         <v-card>
             <v-card-title>
-            <span class="headline">Enter the house informations</span>
+            <span class="headline">Update the house informations</span>
             </v-card-title>
             <v-card-text>
             <v-container>
                 <v-row>
                     <v-col cols="12">
                         <v-text-field
-                        label="Title of the advertisement*"
+                        label="Title of the advertisement"
                         required
-                        v-model="houseTitle"
+                        v-model="house.title"
                         ></v-text-field>
                     </v-col>
                     <v-col cols="12">
                         <v-text-field
-                        label="Description of the advertisement*"
+                        label="Description of the advertisement"
                         required
-                        v-model="houseAbout"
+                        v-model="house.about"
                         ></v-text-field>
                     </v-col>
                     <v-col cols="12">
                         <v-text-field
-                        label="Price of the house in ether*"
+                        label="Price of the house in ether"
                         type="number"
                         required
-                        v-model="housePrice"
+                        v-model="house.price"
                         ></v-text-field>
                     </v-col>
                     <v-col cols="12">
@@ -47,13 +46,13 @@
                     <v-col cols="12" sm="6" md="4">
                         <v-text-field
                         label="StreetName"
-                        v-model="houseStreetname"
+                        v-model="house.address.streetName"
                         required></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="3">
                         <v-text-field
                         label="City"
-                        v-model="houseCity"
+                        v-model="house.address.city"
                         ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="2">
@@ -61,13 +60,13 @@
                         label="ZipCode"
                         type="number"
                         required
-                        v-model="houseZipCode"
+                        v-model="house.address.zipCode"
                         ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="3">
                         <v-text-field
                         label="Country"
-                        v-model="houseCountry"
+                        v-model="house.address.country"
                         required
                         ></v-text-field>
                     </v-col>
@@ -77,9 +76,9 @@
                     <v-col cols="12" sm="6" md="3">
                         <v-select
                         :items=nbRoomItems
-                        label="Number of room*"
+                        label="Number of room"
                         required
-                        v-model="houseNbRoom"
+                        v-model="house.nbRoom"
                         ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6" md="3">
@@ -87,23 +86,23 @@
                         :items=nbBedRoomItems
                         label="Number of bedroom"
                         required
-                        v-model="houseNbBedRoom"
+                        v-model="house.nbBedRoom"
                         ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6" md="3">
                         <v-select
                         :items=houseCategoryItems
-                        label="Category of the house*"
-                        v-model="houseCategory"
+                        label="Category of the house"
+                        v-model="house.category"
                         required
                         ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6" md="3">
                         <v-text-field
-                        label="Surface in m²*"
+                        label="Surface in m²"
                         required
                         type="number"
-                        v-model="houseSurface"
+                        v-model="house.surface"
                         ></v-text-field>
                     </v-col>
                 </v-row>
@@ -112,7 +111,7 @@
                         <h2>More informations</h2>
                     </v-col> 
                     <br>
-                    <v-row v-for="other in houseOthers" :key="other.id">
+                    <v-row v-for="other in house.others" :key="other.id">
                         <v-col cols="4">
                             <v-text-field
                             label="Title"
@@ -141,7 +140,6 @@
                 </v-row>
 
             </v-container>
-            <small>*indicates required field</small>
             </v-card-text>
             <v-card-actions>
             <v-spacer></v-spacer>
@@ -154,11 +152,11 @@
             <v-btn
                 color="primary"
                 text
-                @click="createHouse()">
-            Save
+                @click="updateHouse()">
+            Update
           </v-btn>
         </v-card-actions>
-        </v-card>
+      </v-card>
     </v-dialog>
   </v-row>
 </template>
@@ -180,45 +178,36 @@ export default {
         removeItemFromList(other) {
             this.houseOthers.splice(this.houseOthers.indexOf(other),1)
         },
-        createHouse(){
-            var house = {
-                surface: this.houseSurface,
-                category: this.houseCategory,
-                nbRoom: this.houseNbRoom,
-                nbBedRoom: this.houseNbBedRoom,
-                others: this.houseOthers,
-                about: this.houseAbout,
-                title: this.houseTitle,
-                address:{
-                    streetName: this.houseStreetname,
-                    city: this.houseCity,
-                    zipCode: this.houseZipCode,
-                    country: this.houseCountry,
-                },
-                price: this.housePrice,
-            }
-            console.log(house)
+        updateHouse(){
+            console.log(this.house)
             this.dialog = false
         },
     },
     data: () => ({
       dialog: false,
-      houseTitle:'',
-      houseSurface:'',
-      houseNbRoom:'',
-      houseNbBedRoom:'',
-      houseCategory:'',
-      houseStreetname:'',
-      houseCity:'',
-      houseZipCode:'',
-      houseCountry:'',
-      housePrice:'',
-      houseOthersNbElem:0,
-      houseOthers:[],
-      houseAbout:'',
       houseCategoryItems : ['house', 'villa/loft', 'appartement'],
       nbBedRoomItems : ['0','1','2','3','4','5+'],
       nbRoomItems : ['1','2','3','4','5','6+'],
     }),
+    props: {
+      house : {
+            id: String,
+            surface: String,
+            category: String,
+            nbRoom:  String,
+            nbBedRoom: String,
+            others:[],
+            about:String,
+            title:String,
+            address:{
+                streetName: String,
+                city: String,
+                zipCode: String,
+                country: String,
+            },
+            price:  String,
+            owner: String,
+           }
+    }
 }
 </script>

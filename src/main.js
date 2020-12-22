@@ -3,7 +3,6 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import Home from './views/Home'
 import MyHouses from './views/MyHouses'
-import HouseInfo from './views/HouseInfo'
 import VueRouter  from "vue-router";
 
 Vue.config.productionTip = false
@@ -18,11 +17,7 @@ const routes = [
   {
     path: "/myhouses",
     component: MyHouses,
-  },
-  {
-    path: "/houseinfo/:id",
-    component: HouseInfo,
-  },  
+  }  
 ];
 
 const router = new VueRouter({

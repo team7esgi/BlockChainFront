@@ -109,9 +109,7 @@
                             <v-icon>mdi-account</v-icon>
                         </v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn icon color="primary" to='/houseinfo/${house.id}'>
-                            <v-icon>mdi-information-outline</v-icon>
-                        </v-btn>
+                        <HouseInfoPopUp :house="house"/>
                     </v-card-actions>
                     <v-card-actions pa-0>
                         <v-btn block color="primary">
@@ -127,7 +125,11 @@
 
 <script>
 
+import HouseInfoPopUp from '../components/HouseInfoPopUp'
 export default {
+    components: {
+        HouseInfoPopUp
+    },
     data() {
         return {
             houses: [
@@ -137,7 +139,22 @@ export default {
                     "category":"house",
                     "nbRoom":3,
                     "nbBedRoom":2,
-                    "others":[],
+                    "others":[
+                        {
+                            "id": 0,
+                            "item": "micro-onde",
+                            "description": "micro onde 200w"
+                        },
+                        {
+                            "id": 1,
+                            "item": "Parking",
+                            "description": "2 places de parking"
+                        },
+                        {
+                            "id": 3,
+                            "item": "Climtisation",
+                            "description": "Climatisation récemment ramoner par une société connu mondialement dans le quartier"
+                        },],
                     "about":"Maison à rénover près de république",
                     "title":"Maison de 120 m² près de république",
                     "address":{
@@ -155,7 +172,22 @@ export default {
                     "category":"villa/loft",
                     "nbRoom":4                                                                                                                                                                                                                      ,
                     "nbBedRoom":3,
-                    "others":[],
+                    "others":[
+                        {
+                            "id": 0,
+                            "item": "micro-onde",
+                            "description": "micro onde 200w"
+                        },
+                        {
+                            "id": 1,
+                            "item": "Parking",
+                            "description": "2 places de parking"
+                        },
+                        {
+                            "id": 3,
+                            "item": "Climtisation",
+                            "description": "Climatisation récemment ramoner par une société connu mondialement dans le quartier"
+                        },],
                     "about":"Maison d'architecte près de la Seine, récemment rénové",
                     "title":"Villa de 100 m² près du cimetière du père lachaise",
                     "address":{
@@ -165,7 +197,7 @@ export default {
                         "country":"France",
                     },
                     "price": 25,
-                    "owner":"Rafael"
+                    "owner":"Rafal"
                 },
                 {
                     "id":"3",
@@ -173,7 +205,22 @@ export default {
                     "category":"appartement",
                     "nbRoom":2                                                                                                                                                                                                                      ,
                     "nbBedRoom":1,
-                    "others":[],
+                    "others":[
+                        {
+                            "id": 0,
+                            "item": "micro-onde",
+                            "description": "micro onde 200w"
+                        },
+                        {
+                            "id": 1,
+                            "item": "Parking",
+                            "description": "2 places de parking"
+                        },
+                        {
+                            "id": 3,
+                            "item": "Climtisation",
+                            "description": "Climatisation récemment ramoner par une société connu mondialement dans le quartier"
+                        },],
                     "about":"Appartement quasi neuf, 2012, avec 1 école à 50m, 2 arrêt de bus à moins de 3min.",
                     "title":"Appartement à montréal près du centre ville",
                     "address":{

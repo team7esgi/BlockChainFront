@@ -1,18 +1,18 @@
 <template>
     <nav>  
-        <v-app-bar color="teal accent-4" dark>
+        <v-app-bar color="teal accent-4" dark justify-center>
 
-            <v-toolbar-title  class="mx-10">Real Estate MarketPlace </v-toolbar-title>
-
+            <v-toolbar-title  class="hidden-sm-and-down" mx-10>Real Estate MarketPlace </v-toolbar-title>
+            <v-spacer class="hidden-sm-and-down" mr-10></v-spacer>
+            
             <v-btn outlined class="mr-10" router :to="{path: '/'}">
-                <span>MarketPlace</span>
+                <span class="hidden-sm-and-down">MarketPlace</span>
                 <v-icon right>mdi-storefront</v-icon>    
             </v-btn>
-            
             <HouseFormPopUp/>
 
             <v-btn outlined class="mr-10" router :to="{path: '/myhouses'}">
-                <span>My houses</span>
+                <span class="hidden-sm-and-down">My houses</span>
                 <v-icon right>mdi-home</v-icon>    
             </v-btn>
             <v-spacer></v-spacer>

@@ -109,9 +109,7 @@
                             <v-icon>mdi-account</v-icon>
                         </v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn icon color="primary" to='/houseinfo/${house.id}'>
-                            <v-icon>mdi-information-outline</v-icon>
-                        </v-btn>
+                        <HouseInfoPopUp :house="house"/>
                         <v-spacer></v-spacer>
                         <EditHouseFormPopUp :house="house"/>
                     </v-card-actions>
@@ -129,10 +127,12 @@
 
 <script>
 import EditHouseFormPopUp from '../components/EditHouseFormPopUp'
+import HouseInfoPopUp from '../components/HouseInfoPopUp'
 
 export default {
     components: {
-        EditHouseFormPopUp
+        EditHouseFormPopUp,
+        HouseInfoPopUp
     },
     data() {
         return {
@@ -187,7 +187,7 @@ export default {
                         "country":"France",
                     },
                     "price": 25,
-                    "owner":"Rafael"
+                    "owner":"Rafal"
                 },
                 {
                     "id":"3",

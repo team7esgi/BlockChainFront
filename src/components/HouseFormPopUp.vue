@@ -8,7 +8,7 @@
         >
         <template v-slot:activator="{ on, attrs }">  
             <v-btn outlined class="mr-10" slot="activator" v-bind="attrs" v-on="on">
-                <span>Sell a house</span>
+                <span class="hidden-sm-and-down">Sell a house</span>
                 <v-icon right>mdi-cart-arrow-up</v-icon>    
             </v-btn>
         </template>
@@ -17,147 +17,147 @@
             <span class="headline">Enter the house informations</span>
             </v-card-title>
             <v-card-text>
-            <v-container>
-                <v-row>
-                    <v-col cols="12">
-                        <v-text-field
-                        label="Title of the advertisement*"
-                        required
-                        v-model="houseTitle"
-                        ></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
-                        <v-text-field
-                        label="Description of the advertisement*"
-                        required
-                        v-model="houseAbout"
-                        ></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
-                        <v-text-field
-                        label="Price of the house in ether*"
-                        type="number"
-                        required
-                        v-model="housePrice"
-                        ></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
-                        <h2>Location</h2>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                        label="StreetName"
-                        v-model="houseStreetname"
-                        required></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="3">
-                        <v-text-field
-                        label="City"
-                        v-model="houseCity"
-                        ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="2">
-                        <v-text-field
-                        label="ZipCode"
-                        type="number"
-                        required
-                        v-model="houseZipCode"
-                        ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="3">
-                        <v-text-field
-                        label="Country"
-                        v-model="houseCountry"
-                        required
-                        ></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
-                        <h2>Details</h2>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="3">
-                        <v-select
-                        :items=nbRoomItems
-                        label="Number of room*"
-                        required
-                        v-model="houseNbRoom"
-                        ></v-select>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="3">
-                        <v-select
-                        :items=nbBedRoomItems
-                        label="Number of bedroom"
-                        required
-                        v-model="houseNbBedRoom"
-                        ></v-select>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="3">
-                        <v-select
-                        :items=houseCategoryItems
-                        label="Category of the house*"
-                        v-model="houseCategory"
-                        required
-                        ></v-select>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="3">
-                        <v-text-field
-                        label="Surface in m²*"
-                        required
-                        type="number"
-                        v-model="houseSurface"
-                        ></v-text-field>
-                    </v-col>
-                </v-row>
-                <v-row>
-                    <v-col cols="12">
-                        <h2>More informations</h2>
-                    </v-col> 
-                    <br>
-                    <v-row v-for="other in houseOthers" :key="other.id">
-                        <v-col cols="4">
+                <v-container>
+                    <v-row>
+                        <v-col cols="12">
                             <v-text-field
-                            label="Title"
-                            v-model="other.item"
-                            required></v-text-field>
-                        </v-col>
-                        <v-col cols="7">
-                            <v-text-field
-                            label="Description"
-                            v-model="other.description"
+                            label="Title of the advertisement*"
+                            required
+                            v-model="houseTitle"
                             ></v-text-field>
                         </v-col>
-                        <v-col cols="1">
-                            <v-btn color="red" icon @click="removeItemFromList(other)">
-                                <v-icon>mdi-minus</v-icon>
+                        <v-col cols="12">
+                            <v-text-field
+                            label="Description of the advertisement*"
+                            required
+                            v-model="houseAbout"
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                            <v-text-field
+                            label="Price of the house in ether*"
+                            type="number"
+                            required
+                            v-model="housePrice"
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                            <h2>Location</h2>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                            label="StreetName"
+                            v-model="houseStreetname"
+                            required></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="3">
+                            <v-text-field
+                            label="City"
+                            v-model="houseCity"
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="2">
+                            <v-text-field
+                            label="ZipCode"
+                            type="number"
+                            required
+                            v-model="houseZipCode"
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="3">
+                            <v-text-field
+                            label="Country"
+                            v-model="houseCountry"
+                            required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                            <h2>Details</h2>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="3">
+                            <v-select
+                            :items=nbRoomItems
+                            label="Number of room*"
+                            required
+                            v-model="houseNbRoom"
+                            ></v-select>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="3">
+                            <v-select
+                            :items=nbBedRoomItems
+                            label="Number of bedroom"
+                            required
+                            v-model="houseNbBedRoom"
+                            ></v-select>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="3">
+                            <v-select
+                            :items=houseCategoryItems
+                            label="Category of the house*"
+                            v-model="houseCategory"
+                            required
+                            ></v-select>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="3">
+                            <v-text-field
+                            label="Surface in m²*"
+                            required
+                            type="number"
+                            v-model="houseSurface"
+                            ></v-text-field>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="12">
+                            <h2>More informations</h2>
+                        </v-col> 
+                        <br>
+                        <v-row v-for="other in houseOthers" :key="other.id">
+                            <v-col cols="4">
+                                <v-text-field
+                                label="Title"
+                                v-model="other.item"
+                                required></v-text-field>
+                            </v-col>
+                            <v-col cols="7">
+                                <v-text-field
+                                label="Description"
+                                v-model="other.description"
+                                ></v-text-field>
+                            </v-col>
+                            <v-col cols="1">
+                                <v-btn color="red" icon @click="removeItemFromList(other)">
+                                    <v-icon>mdi-minus</v-icon>
+                                </v-btn>
+                            </v-col>
+                        </v-row>
+                        
+                        <v-col cols="12">
+                            <v-btn color="primary" right @click="addNewElemToListOfOher">
+                                <span>Add an element</span>
+                                <v-icon right>mdi-home-plus-outline</v-icon>
                             </v-btn>
                         </v-col>
                     </v-row>
-                    
-                    <v-col cols="12">
-                        <v-btn color="primary" right @click="addNewElemToListOfOher">
-                            <span>Add an element</span>
-                            <v-icon right>mdi-home-plus-outline</v-icon>
-                        </v-btn>
-                    </v-col>
-                </v-row>
 
-            </v-container>
-            <small>*indicates required field</small>
+                </v-container>
+                <small>*indicates required field</small>
             </v-card-text>
             <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-                color="error"
-                text
-                @click="dialog = false">
-                Close
+                <v-spacer></v-spacer>
+                <v-btn
+                    color="error"
+                    text
+                    @click="dialog = false">
+                    Close
+                </v-btn>
+                <v-btn
+                    color="primary"
+                    text
+                    @click="createHouse()">
+                Save
             </v-btn>
-            <v-btn
-                color="primary"
-                text
-                @click="createHouse()">
-            Save
-          </v-btn>
-        </v-card-actions>
+            </v-card-actions>
         </v-card>
     </v-dialog>
   </v-row>

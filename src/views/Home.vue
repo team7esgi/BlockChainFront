@@ -152,7 +152,7 @@ export default {
                 {
                     "id":"2",
                     "surface":100,
-                    "category":"villa",
+                    "category":"villa/loft",
                     "nbRoom":4                                                                                                                                                                                                                      ,
                     "nbBedRoom":3,
                     "others":[],

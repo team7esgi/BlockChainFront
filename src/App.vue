@@ -28,9 +28,12 @@ const web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io
 
 var defaultAccount;
 
+var isConnected = false;
+
 async function connectToMetaMask(){
       await window.ethereum.enable().then((account) => {
         defaultAccount = account[0]
+        isConnected=true
       });
 }
 
@@ -97,8 +100,26 @@ async function startApp(){
   //var test = myContract.at(myContractAddress);
 
   console.log(myContract);
-  await connectToMetaMask()
-  console.log(defaultAccount)
+   try {
+    await connectToMetaMask()
+    if(isConnected)
+      console.log("You are connected")
+    else
+      console.log("Your are not connected")
+    console.log(defaultAccount)
+
+    web3.eth.getBalance(defaultAccount, function(err, result) {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(web3.utils.fromWei(result, "ether") + " ETH")
+      }
+    })
+  }catch(error){
+    console.error("You should try to connect using metamask.");
+  }
+
+
 }
 startApp()
 

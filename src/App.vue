@@ -23,6 +23,10 @@ export default {
 };
 
 const Web3 = require("web3")
+var Contract = require("web3-eth-contract")
+Contract.setProvider ("wss://ropsten.infura.io/ws/v3/59abde443d5642698d98c8c7f87877c4");
+
+
 
 const web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/59abde443d5642698d98c8c7f87877c4"))
 
@@ -418,9 +422,42 @@ const MY_ABI = [
 
 var _estateFactory;
 
+var estateContract = new Contract(MY_ABI,myContractAddress);
+
+let myEstate = {surface: 2, category : "cat", nbRoom : 2, nbBedRoom : 2, description : "desc", item : "item", about : "ab", title :"titre" ,street : {rue : "ma rue", nom :"nom", codePostale: "code", ville : "ma ville", pays : "pays"}, price : 1, enVente :  true }
+
+async function createEstate(userAccount, estate){
+	await estateContract.methods.createEstate(estate).send({from : userAccount},
+		function(error, result){
+			if(error){
+				console.log("erreur !");
+				console.log(error);
+			}
+			else{
+				console.log(result);
+			}
+		});
+}
 async function test(){
-  const data = await _estateFactory.methods.test().call().then(console.log);
+  let data =  _estateFactory
+  
+
+  console.log("appel");
   console.log(data);
+
+ 
+  await estateContract.methods.test().call(
+	function(error, result){
+		if(error){
+			console.log("erreur !")
+			console.log(error)
+		}
+		else{
+			console.log(result)
+		}
+	});
+  await console.log(estateContract.methods);
+  
 }
 
 
@@ -429,12 +466,13 @@ async function startApp(){
   _estateFactory =new web3.eth.Contract(MY_ABI, myContractAddress);
   
   //console.log(_estateFactory);
-  //var test = myContract.at(myContractAddress);
+ 
 
    try {
     await connectToMetaMask()
     if(isConnected){
        console.log("You are connected");
+		createEstate(defaultAccount, myEstate);
     }
      
     else
@@ -448,8 +486,11 @@ async function startApp(){
        
       } else {
         console.log(web3.utils.fromWei(result, "ether") + " ETH")
-         test();
-      }
+       
+
+		test();
+		
+      }	
     })
   }catch(error){
     console.error("You should try to connect using metamask.");
